@@ -7,7 +7,7 @@
         <img src="../../assets/img/logo_index.png" alt="logo黑马头条号" />
       </div>
       <!-- 表单区域 -->
-      <el-form :model="formDate" :rules="rules" ref="formDate">
+      <el-form :model="formDate" :rules="rules" ref="loginForm">
         <el-form-item prop="mobile">
           <el-input placeholder="请输入手机号" v-model="formDate.mobile"></el-input>
         </el-form-item>
@@ -19,7 +19,7 @@
           <el-checkbox v-model="formDate.check">我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" style="width: 100%">登录</el-button>
+          <el-button type="primary" style="width: 100%" @click="login">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -30,17 +30,22 @@
 export default {
 
   data () {
-    function func (rule, value, callback) {
+    // 定义了一个自定义函数
+    var func = function (rule, value, callback) {
       if (value) {
-        callback()
+        // 满足校验
+        callback() // 同意继续往下走
       } else {
+        // 否则不满足校验
         callback(new Error('您必须无条件同意被坑'))
       }
     }
+
     return {
       formDate: {
         mobile: '',
-        code: ''
+        code: '',
+        check: false
       },
       rules: {
         mobile: [
@@ -49,12 +54,29 @@ export default {
         ],
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
-          { pattern: /^\d{6}$/, message: '验证码必须为6个数字', trigger: 'blur' }
+          { pattern: /^\d{6}$/, message: '验证码必须为6位数' }
         ]
       },
       check: [{
         validator: func // 自定义函数
       }]
+    }
+  },
+  methods: {
+    login () {
+      this.$refs.loginForm.validate(isOK => {
+        if (isOK) {
+          this.$axios({
+            method: 'post',
+            url: '/authorizations',
+            data: this.formDate // post参数是在data中写入的
+          }).then(result => {
+            window.localStorage.setItem('user-info', JSON.stringify(result.data.data))
+            // 编程式导航
+            this.$router.push('/home')
+          })
+        }
+      })
     }
   }
 }

@@ -13,6 +13,11 @@ export default new Router({
       redirect: { name: 'login' }
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
       path: '/home',
       name: 'home',
       component: Home
@@ -23,11 +28,6 @@ export default new Router({
     // // which is lazy-loaded when the route is visited.
     // component: () =>
     //             import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
     }
   ]
 })
