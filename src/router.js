@@ -1,20 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home/index.vue'
+import Login from './views/login' // 引入login组件(一级路由)
+import Home from './views/home' // 引入home组件(一级路由)
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: Home
-
+  routes: [
+    {
+      // 设置路由重定向
+      path: '/',
+      redirect: { name: 'login' }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     // path: '/about',
     // name: 'about',
     // // route level code-splitting
@@ -22,6 +23,11 @@ export default new Router({
     // // which is lazy-loaded when the route is visited.
     // component: () =>
     //             import(/* webpackChunkName: "about" */ './views/About.vue')
-  }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    }
   ]
 })

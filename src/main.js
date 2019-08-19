@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css' // 引入样式
 import './assets/style/index.less'
 
 Vue.config.productionTip = false
+
 Vue.use(ElementUI)
 
 new Vue({
