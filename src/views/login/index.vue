@@ -15,7 +15,7 @@
           <el-input placeholder="请输入验证码" v-model="formDate.code" style="width:68%;float:left"></el-input>
           <el-button type="primary" style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-form-item prop='check'>
+        <el-form-item prop="check">
           <!-- checkbox绑定check -->
           <el-checkbox v-model="formDate.check">我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
@@ -29,7 +29,6 @@
 
 <script>
 export default {
-
   data () {
     // 定义了一个自定义函数
     var func = function (rule, value, callback) {
@@ -51,31 +50,50 @@ export default {
       rules: {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
-          { pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号' }
+          {
+            pattern: /^1[3456789]\d{9}$/,
+            message: '请输入正确的手机号',
+            trigger: 'blur'
+          }
         ],
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
-          { pattern: /^\d{6}$/, message: '验证码必须为6位数' }
+          { pattern: /^\d{6}$/, message: '验证码必须为6位数', trigger: 'blur' }
         ],
-        check: [{
-          validator: func // 自定义函数
-        }]
+        check: [
+          {
+            validator: func // 自定义函数
+          }
+        ]
       }
     }
   },
   methods: {
     login () {
       this.$refs.loginForm.validate(isOK => {
+        console.log(this.$refs)
         if (isOK) {
           this.$axios({
             method: 'post',
             url: '/authorizations',
             data: this.formDate // post参数是在data中写入的
-          }).then(result => {
-            window.localStorage.setItem('user-info', JSON.stringify(result.data.data))
-            // 编程式导航
-            this.$router.push('/home')
           })
+            .then(result => {
+              window.localStorage.setItem(
+                'user-info',
+                JSON.stringify(result.data.data)
+              )
+              // 编程式导航
+              this.$router.push('/home')
+              // eslint-disable-next-line handle-callback-err
+            })
+            .catch(() => {
+              this.$message({
+                message: '请检查您的验证信息是否正确！',
+                type: 'warning',
+                duration: 1500
+              })
+            })
         }
       })
     }
@@ -102,7 +120,6 @@ export default {
       height: 40px;
       text-align: center;
       padding-bottom: 20px;
-
       img {
         height: 100%;
       }
