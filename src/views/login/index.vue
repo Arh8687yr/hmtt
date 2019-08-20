@@ -15,7 +15,8 @@
           <el-input placeholder="请输入验证码" v-model="formDate.code" style="width:68%;float:left"></el-input>
           <el-button type="primary" style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-form-item prop="check">
+        <el-form-item prop='check'>
+          <!-- checkbox绑定check -->
           <el-checkbox v-model="formDate.check">我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
@@ -55,11 +56,11 @@ export default {
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
           { pattern: /^\d{6}$/, message: '验证码必须为6位数' }
-        ]
-      },
-      check: [{
-        validator: func // 自定义函数
-      }]
+        ],
+        check: [{
+          validator: func // 自定义函数
+        }]
+      }
     }
   },
   methods: {
