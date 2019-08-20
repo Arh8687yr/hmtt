@@ -3,7 +3,9 @@
     <!-- element-ui外层容器 -->
     <el-container>
       <!-- 左侧边栏容器 -->
-      <el-aside>1</el-aside>
+      <el-aside>
+        <home-aside></home-aside>
+      </el-aside>
       <!-- 右侧边栏容器 -->
       <el-container>
         <!-- 右侧头部区域 -->
@@ -16,8 +18,12 @@
 </template>
 
 <script>
+import homeAside from '../../components/home/home-aside'
+
 export default {
   name: 'home',
-  components: {}
+  components: {
+    'home-aside': homeAside
+  }
 }
 </script>
