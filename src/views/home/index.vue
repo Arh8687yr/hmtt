@@ -20,15 +20,9 @@
 </template>
 
 <script>
-import homeAside from '../../components/home/home-aside'
-import homeHead from '../../components/home/home-head'
-
 export default {
   name: 'home',
-  components: {
-    'home-aside': homeAside,
-    'home-head': homeHead
-  }
+  components: {}
 }
 </script>
 
