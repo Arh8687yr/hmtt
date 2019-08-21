@@ -32,7 +32,5 @@ export default {
 <style lang="less" scoped>
 .main {
   padding: 0;
-  background-image: url("../../assets/img/home.jpg");
-  background-size: cover;
 }
 </style>
