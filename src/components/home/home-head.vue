@@ -65,6 +65,7 @@ export default {
       // 设置下拉菜单时间项
       // console.log(command)
       if (command === 'ownInfo') {
+        this.$router.push('/home/account')
       } else if (command === 'gitAdd') {
         window.location.href = 'https://github.com/Arh8687yr/hmtt'
       } else {
