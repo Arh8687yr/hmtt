@@ -87,9 +87,11 @@ export default {
     display: flex;
     justify-content: center;
     .toux {
-      padding: 0 10px;
+      padding: 10px;
+      box-sizing: border-box;
       img {
         height: 100%;
+        border-radius: 50%;
       }
     }
   }
