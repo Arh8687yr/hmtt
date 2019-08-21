@@ -46,16 +46,9 @@ export default {
   methods: {
     // 1. 获取用户基本信息
     getUserInfo () {
-      // 2. 从localStronage中取出用户登录信息(包含token)
-      let userInfo = window.localStorage.getItem('user-info')
-      // 3. 如果存在 则取出token不存在则为null
-      let token = userInfo ? JSON.parse(userInfo).token : null
       this.$axios({
-        url: '/user/profile',
-        headers: {
-          // 4. 将headers中赋值 后端需要的token身份信息，也就是携带令牌
-          Authorization: `Bearer ${token}`
-        }
+        url: '/user/profile'
+
       }).then(result => {
         this.user = result.data.data // 获取到用户最新的个人资料
       })
