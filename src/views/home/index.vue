@@ -3,15 +3,17 @@
     <!-- element-ui外层容器 -->
     <el-container>
       <!-- 左侧边栏容器 -->
-      <el-aside>
+      <el-aside style="height: 100vh; width: 200px; background-color: #323745;">
         <home-aside></home-aside>
       </el-aside>
       <!-- 右侧边栏容器 -->
       <el-container>
         <!-- 右侧头部区域 -->
-        <el-header>2</el-header>
+        <el-header style="padding:0">
+          <home-head></home-head>
+        </el-header>
         <!-- 右侧主区域 -->
-        <el-main>3</el-main>
+        <el-main class="main"></el-main>
       </el-container>
     </el-container>
   </div>
@@ -19,11 +21,21 @@
 
 <script>
 import homeAside from '../../components/home/home-aside'
+import homeHead from '../../components/home/home-head'
 
 export default {
   name: 'home',
   components: {
-    'home-aside': homeAside
+    'home-aside': homeAside,
+    'home-head': homeHead
   }
 }
 </script>
+
+<style lang="less" scoped>
+.main {
+  padding: 0;
+  background-image: url("../../assets/img/home.jpg");
+  background-size: cover;
+}
+</style>
