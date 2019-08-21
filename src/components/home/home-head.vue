@@ -16,15 +16,17 @@
             <img :src="user.photo ? user.photo : baseURL" alt="touxiang" />
           </span>
 
-          <el-dropdown trigger="click">
+          <el-dropdown trigger="click" @command="commandList">
             <span class="el-dropdown-link">
               {{user.name}}
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
+            <!-- @command为elemen-ui中定义的下拉菜单的事件 -->
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人信息</el-dropdown-item>
-              <el-dropdown-item>git地址</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <!-- command为事件项 -->
+              <el-dropdown-item command="ownInfo">个人信息</el-dropdown-item>
+              <el-dropdown-item command="gitAdd">git地址</el-dropdown-item>
+              <el-dropdown-item command="getOut">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -57,6 +59,18 @@ export default {
       }).then(result => {
         this.user = result.data.data // 获取到用户最新的个人资料
       })
+    },
+    commandList (command) {
+      // command为事件获取到的项
+      // 设置下拉菜单时间项
+      // console.log(command)
+      if (command === 'ownInfo') {
+      } else if (command === 'gitAdd') {
+        window.location.href = 'https://github.com/Arh8687yr/hmtt'
+      } else {
+        window.localStorage.clear() // 擦除本项目的数据
+        this.$router.push({ path: '/login' })
+      }
     }
   },
   created () {
