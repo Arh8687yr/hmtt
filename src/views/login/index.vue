@@ -81,18 +81,11 @@ export default {
             .then(result => {
               window.localStorage.setItem(
                 'user-info',
-                JSON.stringify(result.data.data)
+                JSON.stringify(result.data)
               )
               // 编程式导航
               this.$router.push('/home')
               // eslint-disable-next-line handle-callback-err
-            })
-            .catch(() => {
-              this.$message({
-                message: '请检查您的验证信息是否正确！',
-                type: 'warning',
-                duration: 1500
-              })
             })
         }
       })

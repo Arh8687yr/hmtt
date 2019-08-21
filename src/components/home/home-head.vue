@@ -50,7 +50,7 @@ export default {
         url: '/user/profile'
 
       }).then(result => {
-        this.user = result.data.data // 获取到用户最新的个人资料
+        this.user = result.data // 获取到用户最新的个人资料
       })
     },
     commandList (command) {
