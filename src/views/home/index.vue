@@ -3,7 +3,7 @@
     <!-- element-ui外层容器 -->
     <el-container>
       <!-- 左侧边栏容器 -->
-      <el-aside style="height: 100vh; width: 200px; background-color: #323745;">
+      <el-aside style="min-height: 100vh; width: 200px; background-color: #323745;">
         <home-aside></home-aside>
       </el-aside>
       <!-- 右侧边栏容器 -->

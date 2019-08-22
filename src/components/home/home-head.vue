@@ -48,7 +48,6 @@ export default {
     getUserInfo () {
       this.$axios({
         url: '/user/profile'
-
       }).then(result => {
         this.user = result.data // 获取到用户最新的个人资料
       })
