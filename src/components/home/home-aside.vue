@@ -12,7 +12,7 @@
         active-text-color="#ffd04b"
         router
       >
-      <!-- router为开启路由模式，开始后 el-menu-item的index江湖作为路由的path进行跳转 -->
+        <!-- router为开启路由模式，开始后 el-menu-item的index江湖作为路由的path进行跳转 -->
         <el-menu-item index="/home">
           <i class="el-icon-menu"></i>
           <span slot="title">首页</span>
