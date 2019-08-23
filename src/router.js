@@ -4,8 +4,6 @@ import Login from './views/login' // 引入login组件(一级路由)
 import Home from './views/home' // 引入home组件(一级路由)
 import Main from './views/home/main.vue' // 引入首页视图组件
 
-import Comment from './views/comment'
-
 Vue.use(Router)
 
 export default new Router({
@@ -31,7 +29,10 @@ export default new Router({
         },
         {
           path: '/home/comment',
-          component: Comment
+          component: () => import('./views/comment')
+        }, {
+          path: '/home/articles', // 内容列表
+          component: () => import('./views/articles') // 按需加载的写法
         }
       ]
       // path: '/about',

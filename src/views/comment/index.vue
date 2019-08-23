@@ -69,7 +69,6 @@ export default {
     },
     changePage (newPage) {
       // current-change是分页组件的事件，在页码改变时触发，会传过来当前点击的页码值
-
     }
   },
   created () {
