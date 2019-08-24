@@ -5,7 +5,7 @@
       <span slot="title">评论列表</span>
     </bread-crumb>
     <!-- 引用element-ui table表格 -->
-    <el-table :data="commentList">
+    <el-table :data="commentList" v-loading="load">
       <!-- el-table-column为表格列  label为表头标题 -->
       <el-table-column label="标题" width="500" prop="title"></el-table-column>
       <el-table-column :formatter="formatter" label="评论状态" prop="comment_status"></el-table-column>
@@ -52,7 +52,8 @@ export default {
         pageSize: 10,
         total: 0,
         currentPage: 1
-      }
+      },
+      load: false
     }
   },
   methods: {
@@ -93,6 +94,7 @@ export default {
     },
 
     getList () {
+      this.load = true // 显示加载状态
       // pageList 保存获取到的当前页和每页显示的数据
       let pageList = {
         page: this.page.currentPage, per_page: this.page.pageSize
@@ -107,6 +109,7 @@ export default {
         this.commentList = result.data.results
         // 获取文章的总条数
         this.page.total = result.data.total_count
+        this.load = false // 请求完成隐藏加载状态
       })
     }
   },
