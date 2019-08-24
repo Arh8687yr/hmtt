@@ -29,7 +29,7 @@ export default new Router({
         },
         {
           path: '/home/comment',
-          component: () => import('./views/comment')
+          component: () => import('./views/comment') // 评论列表页
         }, {
           path: '/home/articles', // 内容列表
           component: () => import('./views/articles') // 按需加载的写法
