@@ -33,6 +33,14 @@ export default new Router({
         }, {
           path: '/home/articles', // 内容列表
           component: () => import('./views/articles') // 按需加载的写法
+        },
+        {
+          path: '/home/account', // 账户信息
+          component: () => import('./views/account') // 账户信息
+        },
+        {
+          path: '/home/material', // 素材管理
+          component: () => import('./views/material') // 素材管理
         }
       ]
     }
